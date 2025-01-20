@@ -5,16 +5,23 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/chi/v5/middleware"
+	"sallu.com/internal/store"
 )
 
 type application struct {
 	config config
+	store store.Storage
+}
+
+type dbConfig struct {
+	addr string
 }
 
 type config struct {
 	addr string
+	db dbConfig
 }
 
 func (a *application) mount() http.Handler {

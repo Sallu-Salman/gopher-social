@@ -7,10 +7,10 @@ import (
 )
 
 type Post struct {
-	Id int `json:"id"`
-	Content string `json:"content" validate:"required,max=100"`
-	Title string `json:"title" validate:"required,max=100"`
-	UserId int `json:"user_id"`
+	Id        int    `json:"id"`
+	Content   string `json:"content" validate:"required,max=100"`
+	Title     string `json:"title" validate:"required,max=100"`
+	UserId    int    `json:"user_id"`
 	CreatedAt string `json:"created_at"`
 }
 
@@ -19,7 +19,7 @@ func (p Post) String() string {
 		"Post[id: %v, title: %v, content: %v, user_id: %v, created_at: %v]",
 		p.Id,
 		p.Title,
-		p.Content, 
+		p.Content,
 		p.UserId,
 		p.CreatedAt,
 	)
@@ -44,7 +44,6 @@ func (p *PostsStore) Create(post *Post) error {
 		&post.Id,
 		&post.CreatedAt,
 	)
-
 	if err != nil {
 		return err
 	}
@@ -71,10 +70,9 @@ func (p *PostsStore) GetById(id int) (*Post, error) {
 		&post.UserId,
 		&post.CreatedAt,
 	)
-
 	if err != nil {
 		return nil, err
 	}
 
-	return post, nil 	
+	return post, nil
 }

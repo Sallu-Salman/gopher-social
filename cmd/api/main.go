@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+
 	_ "github.com/lib/pq"
 
 	"sallu.com/internal"
@@ -21,11 +22,11 @@ func main() {
 		log.Fatal(err.Error())
 	}
 	defer db.Close()
-	store:= store.NewStorage(db)
+	store := store.NewStorage(db)
 
 	app := &application{
 		config: cfg,
-		store: store,
+		store:  store,
 	}
 
 	mux := app.mount()

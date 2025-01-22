@@ -12,7 +12,7 @@ import (
 
 type application struct {
 	config config
-	store store.Storage
+	store  store.Storage
 }
 
 type dbConfig struct {
@@ -21,7 +21,7 @@ type dbConfig struct {
 
 type config struct {
 	addr string
-	db dbConfig
+	db   dbConfig
 }
 
 func (a *application) mount() http.Handler {
@@ -47,13 +47,13 @@ func (a *application) mount() http.Handler {
 
 func (a *application) run(mux http.Handler) error {
 	srv := &http.Server{
-		Addr: a.config.addr,
-		Handler: mux,
+		Addr:         a.config.addr,
+		Handler:      mux,
 		WriteTimeout: time.Second * 30,
-		ReadTimeout: time.Second * 10,
-		IdleTimeout: time.Minute,
+		ReadTimeout:  time.Second * 10,
+		IdleTimeout:  time.Minute,
 	}
-	
+
 	fmt.Println("Server started at port", a.config.addr)
 	return srv.ListenAndServe()
 }

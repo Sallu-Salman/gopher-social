@@ -35,7 +35,7 @@ func (a *application) getPostHandler(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.Atoi(postId)
 	if err != nil {
 		WriteJson(w, http.StatusInternalServerError, err)
-		return 
+		return
 	}
 
 	s := a.store.Posts

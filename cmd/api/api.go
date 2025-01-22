@@ -30,6 +30,16 @@ func (a *application) mount() http.Handler {
 
 	r.Route("/v1", func(r chi.Router) {
 		r.Get("/health", a.healthCheckHandler)
+
+		r.Route("/posts", func(r chi.Router) {
+			r.Post("/", a.createPostHandler)
+
+			r.Route("/{postId}", func(r chi.Router) {
+				r.Get("/", a.getPostHandler)
+				// r.Put("/", a.updatePostHandler)
+				// r.Delete("/", a.deletePostHadler)
+			})
+		})
 	})
 
 	return r

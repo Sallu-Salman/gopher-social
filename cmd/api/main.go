@@ -17,10 +17,10 @@ func main() {
 		},
 	}
 	db, err := internal.New(cfg.db.addr)
-	defer db.Close()
 	if err != nil {
 		log.Fatal(err.Error())
 	}
+	defer db.Close()
 	store:= store.NewStorage(db)
 
 	app := &application{
